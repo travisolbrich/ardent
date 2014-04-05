@@ -848,24 +848,6 @@ abstract class Ardent extends Model {
 		return $this->validate($rules, $customMessages);
 	}
 
-    /**
-     * Find a model by its primary key.
-     * If {@link $throwOnFind} is set, will use {@link findOrFail} internally.
-     *
-     * @param  mixed $id
-     * @param  array $columns
-     * @return Ardent|Collection
-     */
-    public static function find($id, $columns = array('*')) {
-        $debug = debug_backtrace(false);
-
-        if (static::$throwOnFind && $debug[1]['function'] != 'findOrFail') {
-            return self::findOrFail($id, $columns);
-        } else {
-            return parent::find($id, $columns);
-        }
-    }
-
 	/**
 	 * Get a new query builder for the model's table.
 	 * Overriden from {@link \Model\Eloquent} to allow for usage of {@link throwOnFind}.
